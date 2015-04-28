@@ -14,6 +14,20 @@ var throneholdprojection = new ol.proj.Projection({
     extent: throneholdextent
 });
 
+var thronehold_layer = new ol.layer.Image({
+    source: new ol.source.ImageStatic({
+        attributions: [
+            new ol.Attribution({
+                html: 'Khorvaire'
+            })
+        ],
+        url: 'Thronehold.jpg',
+        imageSize: [950, 875],
+        projection: projection,
+        imageExtent: throneholdextent,
+    })
+});
+thronehold_layer.setMaxResolution(0.2)
 var map = new ol.Map({
     layers: [
         new ol.layer.Image({
@@ -29,20 +43,7 @@ var map = new ol.Map({
                 imageExtent: extent
             })
         }),
-        new ol.layer.Image({
-            source: new ol.source.ImageStatic({
-                attributions: [
-                    new ol.Attribution({
-                        html: 'Khorvaire'
-                    })
-                ],
-                url: 'Thronehold.jpg',
-                imageSize: [950, 875],
-                projection: projection,
-                imageExtent: throneholdextent,
-                maxResolution: 0.2
-            })
-        })
+        thronehold_layer
     ],
     target: 'map',
     view: new ol.View({
